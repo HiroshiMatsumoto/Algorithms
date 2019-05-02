@@ -1,4 +1,5 @@
 #+TITLE: アルゴリズムの勉強
 
 * リスト
-  - 連結リスト
+  - 連結リスト: LinkedList
+  - 二重連結リスト: TwoWayLinkedList
