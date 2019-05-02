@@ -13,6 +13,12 @@ void add_value(NodePtr &head, int value);
 void add_head(NodePtr &head, int value);
 void add_tail(NodePtr &head, int value);
 void add_after(NodePtr &head, int target, int value);
+
+void remove_head(NodePtr &head);
+// void remove_tail(NodePtr &head);
+// void remove_after(NodePtr &head, int target);
+
+
 void view_list(NodePtr &head);
 void remove_last_node(NodePtr &head);
 void remove_all(NodePtr &head);
@@ -24,6 +30,8 @@ int main(){
     // add_value(head, i);
     add_tail(head, i);
     add_after(head, i, i+10);
+    view_list(head);
+    remove_head(head);
     view_list(head);
   }
   // remove_all(head);
@@ -121,6 +129,7 @@ void add_after(NodePtr &head, int target, int value){
   NodePtr curr = head;
   NodePtr temp = new Node;
   temp->value = value;
+  
   while(curr->value != target)
     curr = curr->next;
 
@@ -133,6 +142,17 @@ void add_after(NodePtr &head, int target, int value){
     curr->next = temp;
   }
 }
+
+void remove_head(NodePtr &head){
+  NodePtr temp = head;
+
+  head = head->next;
+  head->prev = NULL;
+
+  delete temp;
+}
+
+
 
 NodePtr create_list(void){
   NodePtr head = new Node;
