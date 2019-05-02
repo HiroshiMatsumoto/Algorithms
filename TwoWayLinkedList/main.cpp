@@ -11,6 +11,7 @@ typedef struct node{
 NodePtr create_list(void);
 void add_value(NodePtr &head, int value);
 void add_head(NodePtr &head, int value);
+void add_tail(NodePtr &head, int value);
 void view_list(NodePtr &head);
 void remove_last_node(NodePtr &head);
 void remove_all(NodePtr &head);
@@ -20,7 +21,7 @@ int main(){
   NodePtr head = NULL;
   for(int i=0; i< 10; i++){
     // add_value(head, i);
-    add_head(head, i);
+    add_tail(head, i);
     view_list(head);
   }
   // remove_all(head);
@@ -93,6 +94,27 @@ void add_head(NodePtr &head, int value){
     head = temp;
   }  
 }
+
+void add_tail(NodePtr &head, int value){
+  NodePtr curr = head;
+  NodePtr temp = new Node;
+
+  temp->next = NULL;
+  temp->prev = NULL;
+  temp->value = value;
+
+  if(head==NULL){
+    head = temp;
+  }
+  else{
+    while(curr->next != NULL){
+      curr = curr->next;
+    }
+    curr->next = temp;
+    temp->prev = curr;
+  }  
+}
+
 
 void add_value(NodePtr &head, int value){
   NodePtr curr = head;
