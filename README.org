@@ -1,5 +1,9 @@
 #+TITLE: アルゴリズムの勉強
 
 * リスト
-  - 連結リスト: LinkedList
-  - 二重連結リスト: TwoWayLinkedList
+  - 連結リスト: Linked List
+  - 二重連結リスト: Two Way Linked List
+  - メモリ効率二重連結リスト: Memory-Efficient Doubly Linked List
+    - https://www.linuxjournal.com/article/6828
+    - https://www.techiedelight.com/xor-linked-list-overview-implementation-c-cpp/
+  
