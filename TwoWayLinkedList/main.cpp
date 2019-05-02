@@ -15,7 +15,7 @@ void add_tail(NodePtr &head, int value);
 void add_after(NodePtr &head, int target, int value);
 
 void remove_head(NodePtr &head);
-// void remove_tail(NodePtr &head);
+void remove_tail(NodePtr &head);
 // void remove_after(NodePtr &head, int target);
 
 
@@ -31,7 +31,8 @@ int main(){
     add_tail(head, i);
     add_after(head, i, i+10);
     view_list(head);
-    remove_head(head);
+    if(5<i)
+      remove_tail(head);
     view_list(head);
   }
   // remove_all(head);
@@ -150,6 +151,27 @@ void remove_head(NodePtr &head){
   head->prev = NULL;
 
   delete temp;
+}
+
+
+void remove_tail(NodePtr &head){
+  NodePtr curr;
+  NodePtr temp;
+
+  
+  if(head->next == NULL){ // signleton
+    delete head->next;
+    head = NULL;
+  }else{
+    curr = head;
+    while(curr->next->next!=NULL)
+      curr = curr->next;
+
+    temp = curr->next;
+    curr->next = NULL;
+    
+    delete temp;
+  }
 }
 
 
