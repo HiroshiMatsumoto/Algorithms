@@ -11,3 +11,7 @@
   - 二分探索木: Binary Search Tree
     - 要素削除は不完全
     - 要スキュー木対策
+  - 平衡二分探索木: Self-Balancing Binary Search Tree
+    - AVL木
+
+
