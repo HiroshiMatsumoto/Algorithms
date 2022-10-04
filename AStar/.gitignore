@@ -1,0 +1,7 @@
+*.o
+*~
+map.txt
+a.out
+astar
+*swp
+
