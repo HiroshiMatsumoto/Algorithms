@@ -23,7 +23,7 @@ $h(n)$ からゴールノードまでの最小コスト
    - $g(node_{min})$: cost from $node_{S}$ to $node_{min}$
    - $h(node_{neighbor})$: cost from $node_{neighbor}$ to $node_{G}$
    - $COST(node_{min}, node_{neighbor})$: cost from $node_{min}$ to $node_{neighbor}$
-   2. if $node_{neighbor}$ neigher in $L_{open}$ nor $L_{close}$, store optimized cost $f'(node_{neighbor})$ as $f(node_{neighbor})$ for the route-cost of $node_{S} \rightarrow node_{min} \rightarrow node_{neighbor} \rightarrow \node_{G}$ and store the $node_{neighbor}$ in $L_{open}$
+   2. if $node_{neighbor}$ neigher in $L_{open}$ nor $L_{close}$, store optimized cost $f'(node_{neighbor})$ as $f(node_{neighbor})$ for the route-cost of $node_{S} \rightarrow node_{min} \rightarrow node_{neighbor} \rightarrow node_{G}$ and store the $node_{neighbor}$ in $L_{open}$
    3. if $node_{neighbor}$ in $L_{open}$, and $f'(node_{neighbor}) < f(node_{neighbor})$, $f(node_{neighbor})$ from $L_{open}$, then replace the exsting $node_{neighbor}$ in $L_{open}$ with $node_{neighbor}$ with $node_{neighbor}$, whose parent node is $node_{min} and $f$ value is $f'(node_{neighbor})$
    4. if $node_{neighbor}$ in $L_{close}$, and $f'(node_{neighbor}) < f(node_{neighbor})$, $f(node_{neighbor})$ from $L_{close}$, then replace the exsting3. if $node_{neighbor}$ in $L_{close}$, and $f'(node_{neighbor}) < f(node_{neighbor})$, $f(node_{neighbor})$ from $L_{close}$, then replace the exsting $node_{neighbor}$ in $L_{open}$ with $node_{neighbor}$ with $node_{neighbor}$, whose parent node is $node_{min} and $f$ value is $f'(node_{neighbor})$ $node_{neighbor}$ in $L_{open}$ with $node_{neighbor}$ with $node_{neighbor}$, whose parent node is $node_{min} and $f$ value is $f'(node_{neighbor})$
 9. repeat from step 5
