@@ -11,16 +11,17 @@ $h(n)$ からゴールノードまでの最小コスト
 
 ## アルゴリズム
 
-1. create two lists: open-list, $list_{open}$, close-list, $list_{close}$
+1. create two lists: open-list, $L_{open}$, close-list, $L_{close}$
 2. create start node, $node_{S}$
 3. create a set of goal nodes, $node_{G} \in G$
-4. add $node_{S}$ to $list_{open}$
-5. if $list_{open}$ is empty, failure search
-6. pop the node with minimum $f(n)$ value in $list_{open}$, $node_{min}$
+4. add $node_{S}$ to $L_{open}$
+5. if $L_{open}$ is empty, failure search
+6. pop the node with minimum $f(n)$ value in $L_{open}$, $node_{min}$
 7. if $node_{min} \in G$, search ends here
 8. for each neighbor node $node_{neighbor}$ of $node_{min}$:
    1. calculate $f'( node_{neighbor} ) = g( node_{min} ) + COST(node_{min}, node_{neighbor}) + h(node_{neighbor})$
-   - $g(node_{min})$: cost from $node_{start}$ to $node_{min}$
-   - $h(node_{neighbor})$: cost from $node_{neighbor}$ to $node_{goal}$
+   - $g(node_{min})$: cost from $node_{S}$ to $node_{min}$
+   - $h(node_{neighbor})$: cost from $node_{neighbor}$ to $node_{G}$
    - $COST(node_{min}, node_{neighbor})$: cost from $node_{min}$ to $node_{neighbor}$
-   2. if $node_{neighbor}$ not in neigher $list_{open}$ nor $list_{close}$, $f'(m)$
+   2. if $node_{neighbor}$ neigher in $L_{open}$ nor $L_{close}$, store optimized cost $f'(node_{neighbor})$ as $f(node_{neighbor})$ for the route-cost of $node_{S} \rightarrow node_{min} \rightarrow node_{neighbor} \rightarrow \node_{G}$ and store the $node_{neighbor}$ in $L_{open}$
+   3. if $node_{neighbor}$ in $L_{open}$, and $f'(node_{neighbor}) < f(node_{neighbor})$, $f(node_{neighbor})$ from $L_{open}$, then replace the exsting $node_{neighbor}$ in $L_{open}$ with $node_{neighbor}$ with $node_{neighbor}$, whose parent node is $node_{min} and $f$ value is $f'(node_{neighbor})$
