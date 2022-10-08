@@ -12,35 +12,35 @@
 namespace Node {
 
 class Node {
+
 public:
   // constructor
-  Node(int pos_x, int pos_y) {
-    x = pos_x;
-    y = pos_y;
-    coordinate = {x, y};
+  Node() {
+    x = -1;
+    y = -1;
+    coordinate = std::make_pair(x, y);
+    parent_ptr = nullptr;
+  };
+  Node(int a, int b) : x(a), y(b), is_open(true) {
+    coordinate = std::make_pair(a, b);
+    parent_ptr = nullptr;
   };
 
-  // members
-  // cordinate
   int x;
   int y;
-  std::tuple<int, int> coordinate;
+  std::pair<float, float> coordinate;
 
-  int f; // g + h
-  int g;
-  int h;
-  
-  bool operator==(const Node &node){
-    return coordinate == node.coordinate;
-  }
+  float f; // g + h
+  float g;
+  float h;
 
-  bool operator=(const Node &node){
-    return this; 
-  }
+  bool is_open;
+  Node *parent_ptr;
 
-
+  bool operator==(const Node &node) { return coordinate == node.coordinate; }
+  void set_coordinate(int a, int b);
 };
-} // namespace Node
+}
 
 Node::Node find_position(char target, std::vector<std::string> map);
 #endif

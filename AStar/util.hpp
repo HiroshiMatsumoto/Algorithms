@@ -7,7 +7,7 @@
 #include <cmath>
 
 
-namespace Util
+namespace util
 {
   std::vector<std::string> load_map(std::string filepath);
   float euclid_distance(std::tuple<int, int> pos1, std::tuple<int, int> pos2);

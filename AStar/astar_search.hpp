@@ -3,15 +3,17 @@
 
 #include <fstream>
 #include <iostream>
-#include <queue>
 #include <vector>
 #include <tuple>
-#include <cmath>
 #include <algorithm>
+#include <iterator>
 
-std::vector<std::string> load_map(std::string filepath);
-float euclid_distance(std::tuple<int, int> pos1, std::tuple<int, int> pos2);
-int manhattan_distance(std::tuple<int, int> pos1, std::tuple<int, int> pos2);
-void start_search(std::vector<std::string> map);
+#ifndef NODE_H
+#include "Node.hpp"
+#endif
 
+// std::vector<Node::Node> astar_search(std::vector<std::string> map);
+Node::Node astar_search(std::vector<std::string> map);
+
+std::vector<std::pair<int, int>> trace_path(Node::Node node); 
 #endif

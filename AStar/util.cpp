@@ -1,6 +1,6 @@
 #include "util.hpp"
 
-namespace Util {
+namespace util {
 
 std::vector<std::string>
 load_map(std::string filepath) { // std::string filepath){
@@ -37,6 +37,9 @@ int manhattan_distance(std::tuple<int, int> pos1, std::tuple<int, int> pos2) {
   int distance = 0;
   std::tie(pos1_x, pos1_y) = pos1;
   std::tie(pos2_x, pos2_y) = pos2;
-  return pos1_x + pos2_x + pos1_y + pos2_y;
+  return std::abs(pos1_x - pos2_x) + std::abs(pos1_y - pos2_y);
 }
+
+
+
 } // namespace Util
