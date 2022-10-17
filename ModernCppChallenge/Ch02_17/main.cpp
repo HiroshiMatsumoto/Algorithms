@@ -1,9 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <string>
 #include <initializer_list>
-
-using namespace std;
 
 /*
 要素へのアクセス(at(), data())
@@ -14,85 +11,69 @@ using namespace std;
 */
 
 template <typename T>
-class array_iterator {
+class array_iterator{
     T & t;
-
-    array_iterator( T & t): t(t){}
-
-    typename T::reference operator *(){
-        return t[0];
-    }
+    array_iterator(T & t): t(t) {}
 };
-
 
 
 template <class T, size_t R, size_t C>
-class Array{
-    using arrayCol = vector<T>;
-    using arrayVec = vector<arrayCol>;    
-
-    using reference = arrayCol &;
-    // defining two-dimension vector with T type 
-    arrayVec arr;
-
+class array{
+    using iterator = array_iterator<array>;
+    std::vector<T> _array;
     public:
-    // initializing R by C 2D-vector 
-    Array(): Array(R, vector<T>(C)){};
-    // initializing with given data;
-    // https://stackoverflow.com/questions/22133909/how-can-i-use-an-initializer-list-to-initialize-a-2d-vector-member
-    Array(std::initializer_list<vector<T>> arr): arr(arr){};
+    // init.
+    array():_array(R*C){}
+    array(std::initializer_list<T> v):_array(v){};
 
-    constexpr T at(const size_t r, const size_t c){
-        return arr[r][c];
+    T at(size_t i, size_t j){
+        return _array[C * i + j];
     }
 
-    constexpr size_t size(int const rank){
-        if(rank == 1){
-            return R;
-        }
-        else if(rank == 2){
-            return C;
-        } 
-        throw std::out_of_range("out of range");        
+    const size_t size(){
+        return _array.size();
     }
 
-    vector<T> *data(){
-        return arr.data();
+    const size_t rsize(){
+        return R;
     }
 
-    const T& operator[](size_t i) {
-        if(0 <= i && i < R) return arr[i];
-        throw std::out_of_range("out of range");        
+    const size_t csize(){
+        return C;
     }
 
-    using iterator = array_iterator<Array>;
+    T* data(){
+        return _array.data();
+    }
+
     iterator begin(){
-        return iterator(*this);
+        return this.data();
     }
 
-    iterator end();
+    iterator end(){
+        return this.data() + _array.size();
+    }
 };
- /*    move_iterator operator++(){
-        std::move_iterator temp = *this;
-        ++(*this);
-        return temp;
-    } */
+
+
+
 
 int main(){
-    using TwoByThree = Array<int, 2, 3>;
-    TwoByThree array {{1, 2, 3}, {4, 5, 6}};
-    auto iter = array.begin();
-    cout << &iter << endl;
-    /*
-    for(size_t i = 0; i < array.size(1); i++ ){
-        for(size_t j = 0; j < array.size(2); j++ ){
-            cout << i << ", " << j << ": " << array.at(i, j) << endl;
-        }        
+    array<int, 2, 3> M {2,3,4,5,6,7}; 
+   
+    for(int i = 0; i < M.rsize(); i++){
+        for(int j = 0; j < M.csize(); j++){
+            std::cout << M.at(i,j) << std::endl;
+        }
     }
-    */
+   
+   int* a = M.data();
+   std::cout << *a << std::endl;
+
+   // イテレータ
    /*
-   for(auto itr = array.begin(); itr != array.end(); ++itr){
-    cout << *itr << endl;
+   for(auto itr = M.begin(); itr != M.end(); ++itr){
+    std::cout << *itr << std::endl;
    }
    */
    return 0;
