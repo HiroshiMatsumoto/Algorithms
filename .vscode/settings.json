@@ -9,6 +9,7 @@
         "xtr1common": "cpp",
         "xutility": "cpp",
         "string": "cpp",
-        "initializer_list": "cpp"
+        "initializer_list": "cpp",
+        "ostream": "cpp"
     }
 }
