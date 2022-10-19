@@ -2,6 +2,9 @@
 
 C++ 100 本ノック
 
+<img width="100" src="https://www.oreilly.co.jp/books/images/picture_large978-4-87311-869-7.jpeg">
+
+https://www.oreilly.co.jp/books/9784873118697/
 
 ## Ch02
 
@@ -25,4 +28,7 @@ IPv4アドレスをキーボードから入力しディスプレイに出力す�
 スワップ
 
 18. 任意個数の引数を取る最小値関数
+
+19. 任意個数の要素をコンテナに追加
+
 
