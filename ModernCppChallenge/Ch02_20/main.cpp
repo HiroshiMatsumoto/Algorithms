@@ -1,27 +1,42 @@
 #include <iostream>
 #include <vector>
-
+#include <cassert>
+#include <algorithm>
 /*
-任意個数の要素をコンテナに追加
+コンテナのany, all, none関数
 */
 
+template<class C, class V>
+bool contains(C c, V v){
+  auto result = std::find(c.begin(), c.end(), v);
+  return result != c.end();
+}
+
 template<typename C, typename... Args>
-void push_back(C& c, Args&&... args){
-  (c.push_back(args), ...); 
+bool contains_any(C c, Args... args){  
+  return (... || contains(c, args));
+}
+
+template<typename C, typename... Args>
+bool contains_all(C c, Args... args){  
+  return (... && contains(c, args));
+}
+
+template<typename C, typename... Args>
+bool contains_none(C c, Args... args){  
+  return (... && !contains(c, args));
 }
 
 int main(){
-  std::vector<int> vec;
-  vec.push_back(1);
+  // any
+  std::vector<int> vec {1,2,3,4,5};
+  assert(contains(vec, 5));
+  assert(contains_any(vec, 1, 2, 3));
 
-  // task
-  // push_back(vec,1,2,3,4);
-  push_back(vec,2,3,4,5);
+  // all
+  assert(contains_all(vec, 1, 2, 3));
 
-  std::vector<int>::iterator itr = vec.begin();
-  while(itr != vec.end()){
-    std::cout << *itr << std::endl;
-    itr++;
-  }
+  // none
+  assert(contains_none(vec, 6, 7, 8));
   return 0;
 }
