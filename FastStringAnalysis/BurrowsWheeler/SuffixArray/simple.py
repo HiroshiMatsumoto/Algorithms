@@ -5,7 +5,7 @@
 def suffix_array(string):
     """
     """
-    return sorted([(string[i:],i) for i in range(len(string))], key=lambda x:x[0])
+    return sorted([(i, string[i:]) for i in range(len(string))], key=lambda x:x[1])
 
 
 def main():
