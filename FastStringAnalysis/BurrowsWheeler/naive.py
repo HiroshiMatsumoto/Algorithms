@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-from SuffixArray.simple import suffix_array
+from BurrowsWheeler.SuffixArray.naive import suffix_array
+
+TERMINAL = '\0'
 
 
-def rank(text):
+def rank(text: str):
     return [text[:i + 1].count(text[i]) for i in range(len(text))]
 
 
@@ -27,8 +29,8 @@ def decode(tf, tb) -> str:
     ranked_tb = list(zip(tb, rank(tb)))
     ranked_tf = list(zip(tf, rank(tf)))
     text = ""
-    index = ranked_tb.index(('\0', 1))
-    while ranked_tf[index] != ('\0', 1):
+    index = ranked_tb.index((TERMINAL, 1))
+    while ranked_tf[index] != (TERMINAL, 1):
         char = ranked_tf[index]
         text += char[0]
         index = ranked_tb.index(ranked_tf[index])
@@ -37,13 +39,12 @@ def decode(tf, tb) -> str:
 
 
 def main():
-    text = "abracadabra\0"
+    text = "abracadabra"
 
+    text += TERMINAL
     tb = burrows_wheeler_transform(text)
-
     sa = suffix_array(text)
     tf = [text[sa[i][0]] for i in range(len(text))]
-
     decoded_text = decode(tf, tb)
 
     assert text == decoded_text
